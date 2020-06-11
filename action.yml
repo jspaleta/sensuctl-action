@@ -4,16 +4,22 @@ description: 'use sensuctl'
 inputs:
   sensu_backend_url:  # id of input
     description: 'The Sensu backend url (alt use env SENSU_BACKEND_URL'
-    required: false
+    required: true
   sensu_user:  # id of input
     description: 'The Sensu user to auth (alt use env SENSU_USER'
-    required: false
+    required: true
   sensu_password:  # id of input
     description: 'The Sensu user password (alt use env SENSU_PASSWORD'
-    required: false
+    required: true
   command:
     description: "sensuctl command to run"
     required: true 
+  configure_args:
+    description: "optional arguments to pass to configure"
+    required: false
+  sensu_ca:  # id of input
+    description: 'Optional Custom CA pem string'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
