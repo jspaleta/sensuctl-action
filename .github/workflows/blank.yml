@@ -25,6 +25,7 @@ jobs:
 
     - name: Sensuctl
       uses: ./
+      id: sensuctl
       with:
         sensu_backend_url: http://localhost:8080
         sensu_user: hey

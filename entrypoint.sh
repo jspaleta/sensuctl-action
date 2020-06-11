@@ -12,7 +12,8 @@ echo ""
 [ -z "$SENSU_PASSWORD" ] && [ -z "$INPUT_SENSU_PASSWORD" ] && echo "SENSU_PASSWORD environment variable empty" && preflight_check=1
 [ -z "$SENSU_BACKEND_URL" ] && [ -z "$INPUT_SENSU_BACKEND_URL" ] && echo "SENSU_BACKEND_URL environment variable empty" && preflight_check=1
 
-if (( $preflight_check > 0 )); then
+if test $preflight_check -ne 0; then
+	echo "Missing environment variables are available"
 	exit 1
 else
 	echo "All needed environment variables are available"
@@ -38,7 +39,7 @@ echo "Configuring sensuctl:"
 echo "  sensuctl configure -n --username $username --password $password --url $url"
 retval=$?
 
-if (( $retval != 0 )); then
+if test $retval -ne 0; then
 	echo "sensuctl configure failed"
 	exit $retval
 fi
