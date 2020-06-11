@@ -1,0 +1,24 @@
+# action.yml
+name: 'Sensuctl'
+description: 'use sensuctl'
+inputs:
+  sensu_backend_url:  # id of input
+    description: 'The Sensu backend url (alt use env SENSU_BACKEND_URL'
+    required: false
+  sensu_user:  # id of input
+    description: 'The Sensu user to auth (alt use env SENSU_USER'
+    required: false
+  sensu_password:  # id of input
+    description: 'The Sensu user password (alt use env SENSU_PASSWORD'
+    required: false
+  command:
+    description: "sensuctl command to run"
+    required: true 
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.command }}
+branding:
+  color: green
+  icon: alert-triangle
