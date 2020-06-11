@@ -34,8 +34,8 @@ else
 	url=$INPUT_SENSU_BACKEND_URL
 fi
 
-echo "Configuring sensuctl"
-sensuctl configure -n --username $username --password $password --url $url
+echo "Configuring sensuctl:"
+echo "  sensuctl configure -n --username $username --password $password --url $url"
 retval=$?
 
 if (( $retval != 0 )); then
