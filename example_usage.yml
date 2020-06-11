@@ -1,0 +1,37 @@
+# This is a basic workflow showing how to use the sensuctl
+
+name: Sensuctl Example
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Checkout
+      uses: actions/checkout@v2
+    # run the Docker based sensuctl job, working directory will be repository checkout from last action
+    - name: Sensuctl
+      uses: jspaleta/sensuctl
+      id: sensuctl
+      with:
+        # You'll need to set this to your server
+        sensu_backend_url: http://localhost:8080
+        # Consider using a github secret for user and password
+        sensu_user: hey
+        sensu_password: now
+        # command to pass to sensuctl 
+        sensu_command: check list
+
