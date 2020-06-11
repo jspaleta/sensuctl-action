@@ -11,7 +11,7 @@ inputs:
   sensu_password:  # id of input
     description: 'The Sensu user password (alt use env SENSU_PASSWORD'
     required: true
-  command:
+  sensu_command:
     description: "sensuctl command to run"
     required: true 
   configure_args:
@@ -23,8 +23,6 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.command }}
 branding:
   color: green
   icon: alert-triangle
