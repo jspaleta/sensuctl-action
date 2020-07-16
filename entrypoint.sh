@@ -52,9 +52,9 @@ else
 fi
 
 echo "Configuring sensuctl:"
-sensuctl configure -n --username ${username} --password ${password} --url ${url} ${ca_arg}  ${optional_args}
+sensuctl configure --username ${username} --password ${password} --url ${url} ${ca_arg}  ${optional_args}
 retval=$?
-
+sensuctl config view
 if test $retval -ne 0; then
 	echo "sensuctl configure failed"
 	exit $retval
