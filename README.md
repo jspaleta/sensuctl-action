@@ -48,7 +48,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Sensuctl Check List
-      uses: ./
+      uses: jspaleta/sensuctl-action@0.0.1
       id: sensuctl
       with:
         sensu_backend_url: ${{ secrets.SENSU_BACKEND_URL }}
