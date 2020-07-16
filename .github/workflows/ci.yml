@@ -27,8 +27,8 @@ jobs:
       uses: ./
       id: sensuctl
       with:
-        sensu_backend_url: http://localhost:8080
-        sensu_user: hey
-        sensu_password: now
-        sensu_command: this is the command to run
+        sensu_backend_url: ${{ secrets.SENSU_BACKEND_URL }}
+        sensu_user: ${{ secrets.SENSU_USER }}
+        sensu_password: ${{ secrets.SENSU_PASSWORD }} 
+        sensu_command: check list --namespace ${{ secrets.SENSU_NAMESPACE }}
 
