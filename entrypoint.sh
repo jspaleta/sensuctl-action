@@ -1,6 +1,11 @@
 #!/bin/sh
 preflight_check=0
 
+echo "Working Directory: $PWD"
+if [ -f  ./.env ] ; then
+  source ./.env
+fi
+
 [ -z "$SENSU_USER" ] && [ -z "$INPUT_SENSU_USER" ] && echo "SENSU_USER environment variable empty" && preflight_check=1
 [ -z "$SENSU_PASSWORD" ] && [ -z "$INPUT_SENSU_PASSWORD" ] && echo "SENSU_PASSWORD environment variable empty" && preflight_check=1
 [ -z "$SENSU_BACKEND_URL" ] && [ -z "$INPUT_SENSU_BACKEND_URL" ] && echo "SENSU_BACKEND_URL environment variable empty" && preflight_check=1
@@ -52,7 +57,7 @@ else
 fi
 
 echo "Configuring sensuctl:"
-sensuctl configure --username ${username} --password ${password} --url ${url} ${ca_arg}  ${optional_args}
+sensuctl configure -n --username ${username} --password ${password} --url ${url} ${ca_arg}  ${optional_args}
 retval=$?
 sensuctl config view
 if test $retval -ne 0; then
