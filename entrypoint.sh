@@ -28,6 +28,11 @@ if [ -z "$INPUT_SENSU_PASSWORD" ] ; then
 else
 	password=$INPUT_SENSU_PASSWORD
 fi
+if [ -z "$INPUT_SENSU_COMMAND" ] ; then
+	cmd=$SENSU_COMMAND
+else
+	cmd=$INPUT_SENSU_COMMAND
+fi
 if [ -z "$INPUT_SENSU_BACKEND_URL" ] ; then
 	url=$SENSU_BACKEND_URL
 else
@@ -64,6 +69,6 @@ if test $retval -ne 0; then
 	echo "sensuctl configure failed"
 	exit $retval
 fi
-
-sensuctl $SENSU_COMMAND
+echo "Performing Sensu Command: ${cmd}"
+sensuctl $cmd
 
