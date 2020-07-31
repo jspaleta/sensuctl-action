@@ -31,6 +31,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: netstat
+      run: which netstat
+
     - name: Sensuctl
       uses: ./
       id: sensuctl
