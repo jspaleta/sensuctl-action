@@ -25,6 +25,9 @@ jobs:
           SENSU_BACKEND_CLUSTER_ADMIN_PASSWORD: ${{ secrets.SENSU_PASSWORD }}
         ports:
           - 8080:8080
+          - 2379:2379
+          - 2380:2380
+            
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -32,7 +35,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: netstat
-      run: netstat -tlpn
+      run: sudo netstat -tlpn
 
     - name: Sensuctl
       uses: ./
